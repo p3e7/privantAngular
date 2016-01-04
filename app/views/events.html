@@ -1,21 +1,10 @@
 <div class="row" class="col-md-10 col-md-offset-1">
-
   <!-- Die einzelnen Angebote in einer Schleife. -->
-  <article class="semiTransparentBg topSpaceOutside minHeightCategories hoverAnimation">
-    <h2>{{offer.name}}</h2>
-    <img class="img-rounded" src="{{offer.image}}">
+  <article class="semiTransparentBg topSpaceOutside minHeightCategories hoverAnimation"
+           ng-repeat="user in users.items">
+    <h2>{{user.name}}</h2>
+    <img class="img-rounded" src="{{user.profilePicture}}">
 
-    <p>{{offer.price | currency}}</p>
-
-    <p>{{offer.description}}</p>
-
-    <p><a href="#offerings" ng-click="delete(offer.id)">Löschen...</a></p>
-
-    <p><a href="#offerings">Zurück...</a></p>
-
-    <p><a href="#edit-offer/{{offer.id}}">Editieren...</a></p>
-
-    <p><a class="btn btn-default" href="#" role="button">Will ich! &raquo;</a></p>
 
   </article>
 </div>
