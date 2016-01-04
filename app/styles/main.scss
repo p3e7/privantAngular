@@ -89,3 +89,136 @@ body {
     border-bottom: 0;
   }
 }
+/*
+    USER MICROSERVICES
+*/
+
+p#regHinweisPflichtfeld {
+  font-size: 10px;
+  margin-top:50px;
+}
+form#registrierungsFormular {
+  position: relative;
+  border-width: 5px;
+  border-color: #01579b;
+  margin: 5px;
+  margin-top: 10px;
+}
+
+form#profilAendernFormular {
+  position: relative;
+  border-width: 5px;
+  border-color: #01579b;
+  margin: 5px;
+  margin-top: 10px;
+}
+
+form#loginFormular {
+  position: relative;
+  border-width: 5px;
+  border-color: #01579b;
+  margin: 5px;
+  margin-top: 10px;
+}
+
+input#regNamensfeld{
+  position: absolute;
+  left: 180px;
+  height: 20px;
+}
+
+input#regPasswort{
+  position: absolute;
+  left: 180px;
+  height: 20px;
+}
+
+input#regEmail{
+  position: absolute;
+  left: 180px;
+  height: 20px;
+}
+
+textArea#regBeschreibung {
+  position: absolute;
+  left: 180px;
+}
+
+input#buttonBild {
+  width: 150px;
+  height: 40px;
+  margin: 20px;
+}
+
+input#regButton {
+  background-color: #84FFE4;
+  color: black;
+  width: 150px;
+  border: 5px;
+  padding: 12px;
+  border-radius: 5px;
+  margin-right: 20px;
+  margin-top: 40px;
+  box-shadow:  0px 3px 10px rgba(50, 180, 165, 0.75);
+}
+
+.dateiHochladen{
+  content: 'Profilbild hochladen';
+}
+
+h5#labelBild{
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+img#uploadbild{
+  width: 150px;
+  height: 150px;
+}
+div#label{
+  margin-top: 10px;
+}
+
+.dateiHochladen::-webkit-file-upload-button {
+  background-color: #84FFE4;
+  color: black;
+  border: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 20px;
+  box-shadow:  0px 3px 7px rgba(50, 180, 165, 0.75);
+}
+h1{
+  font-weight: bold;
+  color: #208A7F;
+}
+h2{
+  font-weight: bold;
+  color: #208A7F;
+}
+
+h3{
+  font-weight: bold;
+  color: #208A7F;
+}
+h4{
+  font-size:16px;
+  color: #208A7F;
+}
+
+.navbar-brand{
+  color: #208A7F;
+}
+
+tr#tableTitle{
+  color: #208A7F;
+}
+
+img#headerBild{
+  width: 30px;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+
+}

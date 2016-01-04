@@ -39,7 +39,29 @@ angular
         controller: 'addEventCtrl',
         controllerAs: 'addEvents'
       })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl',
+        controllerAs: 'register'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
+      })
+      .when('/user', {
+        templateUrl: 'views/user.html',
+        controller: 'UserCtrl',
+        controllerAs: 'user'
+      })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  /*.controller('UserCtrl', function($scope, $http){
+    $http.get('user.json').then(function(articlesResponse){
+      $scope.articles = articlesResponse.data;
+    });
+  });*/
+
+

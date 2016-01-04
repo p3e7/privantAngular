@@ -1,0 +1,27 @@
+<br>
+  <h3>Benutzerliste</h3>
+  </br>
+  <form>
+    <h4>Suche: </h4>
+    <input type="text" ng-model="search">
+    <p ng-show="search">Suche Benutzer mit: {{search}}</p>
+  </form>
+
+  <br/>
+
+  <table class="table">
+    <tr id="tableTitle">
+      <th>ID-Nummer</th>
+      <th>Benutzername</th>
+      <th>Passwort</th>
+      <th>Rolle</th>
+    </tr>
+    <tr ng-repeat="user in articles.items | filter:search">
+      <td>{{user.id}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.passwort}}</td>
+      <td>{{user.rolle}}</td>
+    </tr>
+  </table>
+  </br>
+</div>
