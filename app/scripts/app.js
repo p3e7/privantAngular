@@ -34,6 +34,11 @@ angular
         controller: 'EventsCtrl',
         controllerAs: 'events'
       })
+      .when('/addEvent', {
+        templateUrl: 'views/addEvent.html',
+        controller: 'addEventCtrl',
+        controllerAs: 'addEvents'
+      })
       .otherwise({
         redirectTo: '/'
       });

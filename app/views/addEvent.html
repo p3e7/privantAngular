@@ -1,0 +1,27 @@
+<div class="row">
+
+  <div class="col-md-10 col-md-offset-1 semiTransparentBg topSpaceOutside">
+    <div class="col-md-4">
+
+      <!-- Das Formular mit den einzlnen Eingabefeldern -->
+      <form name="addEvent" role="form" ng-submit="save(event)">
+        <div class="form-group">
+          <label for="productTitle">Name</label>
+          <input type="text" class="form-control" id="productTitle" required
+                 placeholder="Wie heißt dein Event?" ng-model="event.name"/>
+        </div>
+
+        <!-- Die Beschreibung -->
+        <div class="form-group">
+          <label for="productDescription">Beschreibung</label>
+                  <textarea type="text" class="form-control" id="productDescription" required
+                            placeholder="Beschreibe dein Event!" rows="4" ng-model="event.description"
+                            name="user_eingabe" cols="50" rows="10"></textarea>
+        </div>
+
+
+        <button type="submit" class="btn btn-default" ng-disabled="addEvent.$invalid">Event eintragen</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,20 @@
 <div class="row" class="col-md-10 col-md-offset-1">
-  <!-- Die einzelnen Angebote in einer Schleife. -->
+  <h1>Anstehende Events</h1>
+
+
+  <div>
+    Events durchsuchen: <input ng-model="searchText">
+    Sortieren nach: <select ng-model="sorting">
+      <option value="+name">Name (Aufsteigend)</option>
+      <option value="-name">Name (Absteigend)</option>
+    </select>
+  </div>
+
+  <!-- Die einzelnen Events in einer Schleife. -->
   <article class="semiTransparentBg topSpaceOutside minHeightCategories hoverAnimation"
-           ng-repeat="user in users.items">
-    <h2>{{user.name}}</h2>
-    <img class="img-rounded" src="{{user.profilePicture}}">
+           ng-repeat="event in pAEvents.items | filter: searchText | orderBy: sorting">
+    <h2>{{event.name}}</h2>
+    <img class="img-rounded" src="{{event.picture}}">
 
 
   </article>

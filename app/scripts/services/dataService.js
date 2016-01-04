@@ -5,40 +5,36 @@ angular.module('privantAngularApp').factory('dataService', function () {
   var data = {};
 
 
-  // Die globalen Benutzer.
-  data.users = {
+  //Alle Events.
+  data.pAEvents = {
     items: [
       {
         id: 1,
-        name: "bestUser4Eva!",
+        name: "Event 1",
         mail: "whatever@gmx.de",
-        password: "superSecurePlainTextPwd",
-        aboutMe: "Ich bin Batman",
-        profilePicture: "http://placehold.it/120x120/007700/ffffff"
+        description: "Wir haben Batman",
+        picture: "http://placehold.it/120x120/007700/ffffff"
       },
       {
         id: 2,
-        name: "noob",
+        name: "Event 2",
         mail: "deineKontoDatenSindSuper@example.org",
-        password: "superSecurePlainTextPwd",
-        aboutMe: "Ich bin Batman",
-        profilePicture: "http://placehold.it/120x120/007700/ffffff"
+        description: "Wir haben Batman",
+        picture: "http://placehold.it/120x120/007700/ffffff"
       },
       {
         id: 3,
-        name: "marcel",
-        mail: "marcelpauck@live.de",
-        password: "superSecurePlainTextPwd",
-        aboutMe: "Ich bin Batman",
-        profilePicture: "http://placehold.it/120x120/007700/ffffff"
+        name: "Event 3",
+        mail: "marck@live.de",
+        description: "Wir haben Batman",
+        picture: "http://placehold.it/120x120/007700/ffffff"
       },
       {
         id: 4,
-        name: "sebastian",
+        name: "Event 4",
         mail: "sebastian@example.com",
-        password: "superSecurePlainTextPwd",
-        aboutMe: "Ich bin Batman",
-        profilePicture: "http://placehold.it/120x120/007700/ffffff"
+        description: "Wir haben Batman",
+        picture: "http://placehold.it/120x120/007700/ffffff"
       }
 
     ]

@@ -9,7 +9,7 @@
  */
 angular.module('privantAngularApp')
   .controller('EventsCtrl',['$scope', 'dataService', function ($scope, dataService) {
-    $scope.users = dataService.users;
+    $scope.pAEvents = dataService.pAEvents;
 
 
   }]);
