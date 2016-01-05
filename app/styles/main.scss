@@ -150,9 +150,10 @@ input#buttonBild {
   margin: 20px;
 }
 
-input#regButton {
+#regButton {
   background-color: #84FFE4;
-  color: black;
+  color: #208A7F;
+  font-weight: bold;
   width: 150px;
   border: 5px;
   padding: 12px;
@@ -221,4 +222,16 @@ img#headerBild{
   margin-left: 5px;
   margin-right: 5px;
 
+}
+
+img#mainImage{
+  width: 200px;
+  height: 150px;
+}
+
+#coverBild{
+  height: 180px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
