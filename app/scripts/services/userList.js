@@ -55,6 +55,30 @@ angular.module('privantAngularApp').factory('userList', function () {
         "aktiviert": "true",
         "registrierungsdatum": "02.01.2016",
         "zuletzt_online": "03.01.2016 18:36:04"
+      },
+      {
+        "username": "HansWurst",
+        "passwort": "irgendwas",
+        "id": "0005",
+        "email": "student@stud.fh-dortmund.de",
+        "ueber_mich": "",
+        "profilbild": "",
+        "rolle": "Benutzer",
+        "aktiviert": "true",
+        "registrierungsdatum": "02.01.2016",
+        "zuletzt_online": "03.01.2016 18:36:04"
+      },
+      {
+        "username": "JaneDoe",
+        "passwort": "jane",
+        "id": "0006",
+        "email": "jane@stud.fh-dortmund.de",
+        "ueber_mich": "Ich bin Jane Doe",
+        "profilbild": "",
+        "rolle": "Benutzer",
+        "aktiviert": "true",
+        "registrierungsdatum": "02.10.2015",
+        "zuletzt_online": "04.01.2016 03:36:04"
       }
     ]
   };

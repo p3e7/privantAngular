@@ -63,10 +63,5 @@ angular
         redirectTo: '/'
       });
   });
-  /*.controller('UserCtrl', function($scope, $http){
-    $http.get('user.json').then(function(articlesResponse){
-      $scope.articles = articlesResponse.data;
-    });
-  });*/
 
 
