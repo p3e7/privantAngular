@@ -1,0 +1,72 @@
+
+
+        <head>
+            <meta charset="UTF-8">
+            <title>PrivAnt</title>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            <!--Responsive Design, das hier aber nicht benötigt wird -->
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body>
+            <h3>Login</h3>
+            </br>
+            <form name="loginFormular" id="loginFormular" onsubmit=" daten_pruefen(); return false;" >
+                Name:                  <input name="Namensfeld" id="regNamensfeld" type="text"><br/><br/>
+                Passwort:              <input name="Passwortfeld" id="regPasswort" type="password"><br/><br/>
+                <div id="label"></div>
+                <input type="submit" id="regButton" value="Einloggen">
+            </form>
+            <!--<datums-komponente ansicht="dateFormatted"></datums-komponente>-->
+
+        </body>
+
+    <script>
+        function daten_pruefen() {
+            $(function() {
+                var user = [];
+                var bool = false, rolle = false;
+                $.getJSON('scripts/user.json', function (data) {
+                    $.each(data.user, function(i,j){
+                        if(document.getElementById("regNamensfeld").value == j.username &&
+                                document.getElementById("regPasswort").value == j.passwort){
+                            bool = true;
+                            if(j.rolle == "Admin"){
+                                rolle = true;
+                            }
+                        }
+                    });
+
+                    if (((document.getElementById("regNamensfeld").value !="" && document.getElementById("regNamensfeld").value == localStorage.getItem("localName")) &&
+                      (document.getElementById("regPasswort").value !="" && document.getElementById("regPasswort").value == localStorage.getItem("localPasswort"))))
+                    {
+                        $('#label').html("<p>Die Einlog-Daten sind korrekt</p>");
+                        console.log("Korrekt");
+                    }
+
+                    else if(bool){
+                        $('#label').html("<p>Die Einlog-Daten sind korrekt</p>");
+                        console.log("Korrekt");
+                        if(rolle)
+                        {
+                            $('#label').append("<p>Sie sind als Admin eingeloggt</p>");
+                        }
+                    }
+
+                    else if((document.getElementById("regNamensfeld")).value == "" && (document.getElementById("regPasswort").value == "")){
+                        $('#label').html("<p>Geben Sie bitte Ihren Usernamen und Passwort ein!</p>");
+                    }
+                    else if((document.getElementById("regNamensfeld")).value == ""){
+                        $('#label').html("<p>Geben Sie bitte Ihren Usernamen ein!</p>");
+                    }
+                    else if((document.getElementById("regPasswort")).value == ""){
+                        $('#label').html("<p>Geben Sie bitte Ihr Passwort ein!</p>");
+                    }
+                    else{
+                        $('#label').html("<p>Die Einlog-Daten sind falsch!</p>");
+                        console.error("Falsche Eingabedaten");
+                    }
+                })
+        })}
+    </script>
+
+
