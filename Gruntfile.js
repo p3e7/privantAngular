@@ -18,7 +18,9 @@ module.exports = function (grunt) {
     ngtemplates: 'grunt-angular-templates',
     cdnify: 'grunt-google-cdn'
   });
-
+  
+  require('load-grunt-tasks')(grunt);
+    
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -154,7 +156,20 @@ module.exports = function (grunt) {
         src: ['test/spec/{,*/}*.js']
       }
     },
-
+    // TODO: ES6 Babel inclusion
+    "babel": {
+            "options": {
+                sourceMap: true,
+                presets: ['es2015']
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    src: ["**/*.es6"],
+                    ext: "-es6.js"
+                }]
+            }
+    },
     // Empties folders to start fresh
     clean: {
       dist: {
@@ -454,7 +469,16 @@ module.exports = function (grunt) {
     karma: {
       unit: {
         configFile: 'test/karma.conf.js',
-        singleRun: true
+        singleRun: true,
+        
+        options: {
+            files: ['../app/bower_components/angular/angular.js',
+                    '../app/bower_components/angular*/angular*.js',
+                    '../app/bower_components/angular*/ng*.js',
+                    '../app/scripts/**/*.js', 
+                    'spec/**/*.js'
+                   ]
+        }
       }
     }
   });
@@ -504,7 +528,7 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
   ]);
 
   grunt.registerTask('default', [
