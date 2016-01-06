@@ -44,7 +44,7 @@ module.exports = function(config) {
     // - IE (only Windows)
     browsers: [
       "PhantomJS",
-      "Chrome"
+      "Chrome",
       "Firefox",
       "PhantomJS"
     ],
@@ -55,7 +55,7 @@ module.exports = function(config) {
       "karma-chrome-launcher",
       "karma-jasmine",
       "karma-browserify",
-      "karma-spec-reporter"
+      "karma-spec-reporter",
       "karma-firefox-launcher",
       "karma-jasmine"
     ],
