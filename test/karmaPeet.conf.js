@@ -12,16 +12,13 @@ module.exports = function(config) {
 
     // base path, that will be used to resolve files and exclude
     basePath: '',
-    
-    preprocessors: {
-        'test/**/*.js' : ['browserify'],
-        '../app/bower_components/**/*.js' : ['browserify']
-    },
+
     // testing framework to use (jasmine/mocha/qunit/...)
     // as well as any additional frameworks (requirejs/chai/sinon/...)
     frameworks: [
-      "jasmine", "browserify"
+      "jasmine"
     ],
+
     // list of files / patterns to load in the browser
     files: [
       'spec/**/*.js'
@@ -43,19 +40,12 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      "PhantomJS",
-      "Chrome"
       "Firefox",
       "PhantomJS"
     ],
 
     // Which plugins to enable
     plugins: [
-      "karma-phantomjs-launcher",
-      "karma-chrome-launcher",
-      "karma-jasmine",
-      "karma-browserify",
-      "karma-spec-reporter"
       "karma-firefox-launcher",
       "karma-jasmine"
     ],
@@ -65,18 +55,10 @@ module.exports = function(config) {
     singleRun: false,
 
     colors: true,
-      
-    reporters: ['spec'],
-    specReporter: {
-        suppressErrorSummary: false,
-        suppressFailed: false, 
-        suppressPassed: false,
-        suppressSkipped: false
-    },
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_WARN,
+    logLevel: config.LOG_INFO,
 
     // Uncomment the following lines if you are using grunt's server to run the tests
     // proxies: {

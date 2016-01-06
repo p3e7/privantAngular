@@ -1,0 +1,79 @@
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="mailcheck.min.js"></script>
+
+    <br>
+            <h3>Registrierung</h3>
+            </br>
+        <form name="registrierungsFormular" id="registrierungsFormular" onsubmit="daten_speichern(); daten_ausgeben(); return false;" action="user.json">
+            Name:*                   <input name="Namensfeld" id="regNamensfeld" type="text"><br/><br/>
+            Passwort:*               <input name="Passwortfeld" id="regPasswort" type="password"><br/><br/>
+            E-Mail:*                 <input name="EMailFeld" id="regEmail" type="email"><br/><br/>
+
+            <gold-email-input auto-validate="true" label="E-Mail-Adresse"></gold-email-input>
+
+            Kurzbeschreibung:       <textarea name="Beschreibung" id="regBeschreibung" cols=30" rows="4"></textarea><br/>
+            <p id="regHinweisPflichtfeld">* Pflichtfelder</p><br/>
+            <h4 id="labelBild">Profilbild hochladen</h4>
+            <input type="file" id="dateiHochladen" name="files[]" onchange="hinzufuegen(document.images[0].src=this.value)"/><br/>
+            <img id="uploadbild" src="" /> <br/>
+            <input type="submit" id="regButton" value="Registrieren">
+            <div id="label"></div>
+            <!-- Button zum Zurücksetzen der eingegeben Daten<input type="reset">-->
+        </form>
+
+    </body>
+    <script>
+
+        function hinzufuegen(zwerg){
+            document.getElementById("uploadbild").src = zwerg;
+            console.log("Bild zuweisen");
+        }
+
+        function daten_speichern(){
+            var datum = new Date();
+            var tag = datum.getDate();
+            var monat = datum.getMonth()+1;
+            var jahr = datum.getFullYear();
+            var stunde = datum.getHours();
+            var minute = datum.getMinutes();
+            var sekunde = datum.getSeconds();
+
+            if(sekunde < 10 ){
+                sekunde = '0' + sekunde;
+            }
+
+            localStorage.setItem("localName", document.getElementById("regNamensfeld").value);
+            localStorage.setItem("localPasswort", document.getElementById("regPasswort").value);
+            localStorage.setItem("localEmail", document.getElementById("regEmail").value);
+            localStorage.setItem("localBeschreibung", document.getElementById("regBeschreibung").value);
+            localStorage.setItem("localRegistrierungsdatum", localStorage.getItem("dateView"));
+            localStorage.setItem("localOnlinezeit", localStorage.getItem("timeDate"));
+            //localStorage.setItem("localRegistrierungsdatum", tag + '.' + monat + '.' + jahr);
+            //localStorage.setItem("localOnlinezeit", stunde + ':' + minute + ':' + sekunde + ' ' + tag + '.' + monat + '.' + jahr);
+
+            /**
+            $(function(){
+                $('#componentID').hidden = "false";
+            })**/
+
+            $(function(){
+                    $('#label').html("Registriert am: <datums-komponente ansicht='praepositonen'></datums-komponente>");
+            })
+        }
+        function daten_ausgeben() {
+            console.log("Name: " + localStorage.getItem("localName"));
+            console.log("Passwort: " + localStorage.getItem("localPasswort"));
+            console.log("Email: " + localStorage.getItem("localEmail"));
+            console.log("Beschreibung: " + localStorage.getItem("localBeschreibung"));
+            console.log("Registrierungsdatum: " + localStorage.getItem("localRegistrierungsdatum"));
+            console.log("zuletzt Online: " + localStorage.getItem("localOnlinezeit"));
+           // $location("#/benutzerliste");
+        }
+
+
+</script>
+
+
+
+

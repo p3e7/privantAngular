@@ -1,0 +1,143 @@
+<link rel="import" href="bower_components/polymer/polymer.html"/>
+
+<dom-module id="datums-komponente">
+	<style>
+		@keyframes animation{
+			0%   {color: #3333cc; left:0px; top:0px;}
+			50%  {color: #5B419E; left:200px; top:0px;}
+			100% {color: #208A7F; left:0px; top:0px;}
+		}
+		#platzhalter{
+			margin: 5px;
+			margin-top: 20px;
+			font-family: "Arial Narrow";
+			text-shadow: 1px 1px 3px #37606E,
+						-3px -2px 3px #7cd7f2;
+			font-size: 1.2em;
+			animation-name: animation;
+			-webkit-animation-name: animation;
+			position: relative;
+			animation-duration: 20s;
+			color: #208A7F;
+		}
+	</style>
+	
+	<template>
+		<div id="platzhalter">{{aufruf(ansicht)}}</div>
+	</template>
+	
+	<script> 
+	
+		Polymer({
+			is: "datums-komponente",
+			properties: {
+				ansicht: String
+			},
+
+			aufruf: function(ansicht) {
+				var datum = new Date();
+				var tag = datum.getDate();
+				var monat = datum.getMonth() + 1;
+				var jahr = datum.getFullYear();
+				var stunde = datum.getHours();
+				var minute = datum.getMinutes();
+				var sekunde = datum.getSeconds();
+				var wochentag = datum.getDay();
+
+				var month = new Array();
+				month[0] = "Januar";
+				month[1] = "Februar";
+				month[2] = "März";
+				month[3] = "April";
+				month[4] = "Mai";
+				month[5] = "Juni";
+				month[6] = "Juli";
+				month[7] = "August";
+				month[8] = "September";
+				month[9] = "Oktober";
+				month[10] = "November";
+				month[11] = "Dezember";
+				var monatString = month[monat];
+
+				var tagArray = new Array();
+					tagArray[0] = "Sonntag";
+					tagArray[1] = "Montag";
+					tagArray[2] = "Dienstag";
+					tagArray[3] = "Mittwoch";
+					tagArray[4] = "Donnerstag";
+					tagArray[5] = "Freitag";
+					tagArray[6] = "Samstag";
+				var wochentagString = tagArray[wochentag];
+
+				if (sekunde < 10) {
+					sekunde = '0' + sekunde;
+				}
+				if (minute < 10) {
+					minute = '0' + minute;
+				}
+				if (tag < 10) {
+					tag = '0' + tag;
+				}
+				if (monat < 10) {
+					monat = '0' + monat;
+				}
+
+				var dateFormatted = tag + '.' + monatString + ' ' + jahr + ' ' + stunde + ':' + minute + ':' + sekunde;
+				var dateWeekday = wochentagString + ', den ' + tag + '.' + monatString + ' ' + jahr;
+				var timestamp = jahr + '' +  monat + '' + tag + '' + stunde + '' + minute + '' + sekunde;
+				var dateView = tag + '.' + monatString + ' ' + jahr;
+				var dateDigits = tag + '.' + monat + '.' + jahr;
+				var timeOnly = stunde + ':' + minute + ':' + sekunde;
+				var weekdayOnly = wochentagString;
+				var timeDate = stunde + ':' + minute + ':' + sekunde + ' am ' + tag + '.' + monatString + ' ' + jahr;
+				var praepositonen = 'Am ' + tag + '.' + monatString + ' ' + jahr + ' um ' + stunde + ':' + minute + ' Uhr';
+
+				localStorage.setItem("dateFormatted", dateFormatted);
+				localStorage.setItem("dateWeekday", dateWeekday);
+				localStorage.setItem("timestamp", timestamp);
+				localStorage.setItem("dateView", dateView);
+				localStorage.setItem("dateDigits", dateDigits);
+				localStorage.setItem("timeOnly", timeOnly);
+				localStorage.setItem("weekdayOnly", weekdayOnly);
+				localStorage.setItem("timeDate", timeDate);
+				localStorage.setItem("praepositonen", praepositonen);
+				/**
+				 * Hier Event werfen und abfangen statt localStorage
+				 *
+				 */
+
+				switch(ansicht){
+					case "dateFormatted":
+						return dateFormatted;
+						break;
+					case "dateWeekday":
+						return dateWeekday;
+						break;
+					case "timestamp":
+						return timestamp;
+						break;
+					case "dateView":
+						return dateView;
+						break;
+					case "dateDigits":
+						return dateDigits;
+						break;
+					case "timeOnly":
+						return timeOnly;
+						break;
+					case "weekdayOnly":
+						return weekdayOnly;
+						break;
+					case "timeDate":
+						return timeDate;
+						break;
+					case "praepositonen":
+						return praepositonen;
+						break;
+				}
+			}
+
+		});
+		
+	</script>
+</dom-module>
