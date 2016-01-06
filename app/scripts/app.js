@@ -39,6 +39,9 @@ angular
         controller: 'addEventCtrl',
         controllerAs: 'addEvents'
       })
+      .when('/recommendations', {
+        templateUrl: 'views/recommendations.html'
+       })
       .otherwise({
         redirectTo: '/'
       });
