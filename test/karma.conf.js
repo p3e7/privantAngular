@@ -12,6 +12,11 @@ module.exports = function(config) {
 
     // base path, that will be used to resolve files and exclude
     basePath: '',
+    preprocessors: {
+        'test/**/*.js' : ['browserify'],
+        '../app/bower_components/**/*.js' : ['browserify']
+    },
+
     // testing framework to use (jasmine/mocha/qunit/...)
     // as well as any additional frameworks (requirejs/chai/sinon/...)
     frameworks: [
@@ -42,7 +47,8 @@ module.exports = function(config) {
       "PhantomJS",
       "Chrome",
       "Firefox",
-      "PhantomJS"
+      "PhantomJS",
+      "Chrome"
     ],
 
     // Which plugins to enable
@@ -75,11 +81,11 @@ module.exports = function(config) {
     singleRun: false,
 
     colors: true,
-      
+
     reporters: ['spec'],
     specReporter: {
         suppressErrorSummary: false,
-        suppressFailed: false, 
+      suppressFailed: false,
         suppressPassed: false,
         suppressSkipped: false
     },
@@ -89,9 +95,9 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // Uncomment the following lines if you are using grunt's server to run the tests
-    // proxies: {
-    //   '/': 'http://localhost:9000/'
-    // },
+    proxies: {
+      '/': 'http://localhost:9000/'
+    },
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'
   });
