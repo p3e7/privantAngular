@@ -3,7 +3,6 @@
 // encapsulates the functionalities of the directive
 class RecommendationDirectiveController {
     constructor(document, $scope, recommendationsFty){
-        console.log($scope);
         this.filterTags = document.querySelector(".tags");
         this.filterInput = document.querySelector(".filterInput");
         this.recommendationsFty = recommendationsFty;
@@ -27,7 +26,6 @@ class RecommendationDirectiveController {
         var that = this;
         this.tagClick  = function(elem, evt){
             var clickedTag = elem.target;
-            console.log(clickedTag.childNodes[0]);
             var content = clickedTag.childNodes[0].data;
             clickedTag.innerHTML  = "";
 
@@ -188,7 +186,6 @@ sdr.directive('sdRecommendations', function(recommendationsFty) {
 sdr.filter('filterRecommendations',function(recommendationsFty){
     return function(input) {
         var filtered = [];
-        console.log(recommendationsFty.search);
         
         for(var i = 0; i < input.length; i++){
             var added = false;
@@ -231,3 +228,10 @@ sdr.filter('filterRecommendations',function(recommendationsFty){
         }
     };
 });
+
+// fuck those browsers not having String.contains
+if(!('contains' in String.prototype)) {
+    String.prototype.contains = function(str) {
+        return -1 !== String.prototype.indexOf.call(this, str);
+    };
+}

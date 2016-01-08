@@ -12,11 +12,6 @@ module.exports = function(config) {
 
     // base path, that will be used to resolve files and exclude
     basePath: '',
-    
-    preprocessors: {
-        'test/**/*.js' : ['browserify'],
-        '../app/bower_components/**/*.js' : ['browserify']
-    },
     // testing framework to use (jasmine/mocha/qunit/...)
     // as well as any additional frameworks (requirejs/chai/sinon/...)
     frameworks: [
@@ -24,9 +19,10 @@ module.exports = function(config) {
     ],
     // list of files / patterns to load in the browser
     files: [
-      'spec/**/*.js'
+        'spec/**/*.js',
+        '../app/scripts/**/*.html'
     ],
-
+    
     // list of files / patterns to exclude
     exclude: [
     ],
@@ -57,9 +53,23 @@ module.exports = function(config) {
       "karma-browserify",
       "karma-spec-reporter",
       "karma-firefox-launcher",
-      "karma-jasmine"
+      "karma-jasmine",
+      "ng-html2js",
+      "karma-ng-html2js-preprocessor"
     ],
-
+    ngHtml2JsPreprocessor: {
+        cacheIdFromPath : function(filepath) {
+            var newPath = filepath.substr(filepath.indexOf("/app/")+5);
+            console.log("========================================================> "+newPath);
+            return newPath;
+        },
+        moduleName: 'templates'
+    },
+    preprocessors: {
+        'test/**/*.js' : ['browserify'],
+        '../app/bower_components/**/*.js' : ['browserify'],
+        '../app/scripts/**/*.html' : ['ng-html2js']          
+    },
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: false,
@@ -76,7 +86,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_WARN,
+    logLevel: config.LOG_INFO,
 
     // Uncomment the following lines if you are using grunt's server to run the tests
     // proxies: {
@@ -86,3 +96,4 @@ module.exports = function(config) {
     // urlRoot: '_karma_'
   });
 };
+console.log(__dirname + " " + __filename);

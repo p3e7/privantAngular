@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+ <testsuite name="Failing test: " timestamp="2016-01-06T17:13:01" hostname="localhost" time="0.011" errors="0" tests="1" skipped="0" disabled="0" failures="1">
+  <testcase classname="Failing test: " name="I will fail" time="0.01">
+   <failure type="toBe" message="Expected false to be true."><![CDATA[Error: Failed expectation
+    at Object.<anonymous> (/home/sascha/Data/workspaces/web/privantAngular/test/e2e/index/index.spec.js:40:23)
+    at /home/sascha/Data/workspaces/web/privantAngular/node_modules/protractor/node_modules/jasminewd2/index.js:96:23
+    at [object Object].promise.Promise.goog.defineClass.constructor (/home/sascha/Data/workspaces/web/privantAngular/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:1056:7)
+    at new wrappedCtr (/home/sascha/Data/workspaces/web/privantAngular/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/base.js:2468:26)
+    at controlFlowExecute (/home/sascha/Data/workspaces/web/privantAngular/node_modules/protractor/node_modules/jasminewd2/index.js:82:18)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_.execute_ (/home/sascha/Data/workspaces/web/privantAngular/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2776:14)
+    at [object Object].promise.ControlFlow.goog.defineClass.goog.defineClass.abort_.error.executeNext_ (/home/sascha/Data/workspaces/web/privantAngular/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/../webdriver/promise.js:2758:21)
+    at goog.async.run.processWorkQueue (/home/sascha/Data/workspaces/web/privantAngular/node_modules/protractor/node_modules/selenium-webdriver/lib/goog/async/run.js:124:15)
+    at process._tickCallback (node.js:356:9)]]>
+   </failure>
+  </testcase>
+ </testsuite>
+ <testsuite name="Passing test: " timestamp="2016-01-06T17:13:01" hostname="localhost" time="0.003" errors="0" tests="1" skipped="0" disabled="0" failures="0">
+  <testcase classname="Passing test: " name="I will pass" time="0.003" />
+ </testsuite>
+</testsuites>
