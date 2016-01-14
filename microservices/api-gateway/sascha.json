@@ -1,0 +1,12 @@
+[{
+	"host": "localhost",
+    "port": "3000",
+	"redirects":[{
+		"path": "/xx",
+		"redirect": "/animals"
+	},
+    {
+		"path": "/xy",
+		"redirect": "/animal"
+	}]
+}]
