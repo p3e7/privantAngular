@@ -12,10 +12,6 @@ module.exports = function(config) {
 
     // base path, that will be used to resolve files and exclude
     basePath: '',
-    preprocessors: {
-        'test/**/*.js' : ['browserify'],
-        '../app/bower_components/**/*.js' : ['browserify']
-    },
 
     // testing framework to use (jasmine/mocha/qunit/...)
     // as well as any additional frameworks (requirejs/chai/sinon/...)
@@ -27,7 +23,7 @@ module.exports = function(config) {
         'spec/**/*.js',
         '../app/scripts/**/*.html'
     ],
-    
+
     // list of files / patterns to exclude
     exclude: [
     ],
@@ -47,7 +43,6 @@ module.exports = function(config) {
       "PhantomJS",
       "Chrome",
       "Firefox",
-      "PhantomJS",
       "Chrome"
     ],
 
@@ -74,7 +69,7 @@ module.exports = function(config) {
     preprocessors: {
         'test/**/*.js' : ['browserify'],
         '../app/bower_components/**/*.js' : ['browserify'],
-        '../app/scripts/**/*.html' : ['ng-html2js']          
+        '../app/scripts/**/*.html' : ['ng-html2js']
     },
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
@@ -97,7 +92,7 @@ module.exports = function(config) {
     // Uncomment the following lines if you are using grunt's server to run the tests
     proxies: {
       '/': 'http://localhost:9000/'
-    },
+    }
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'
   });

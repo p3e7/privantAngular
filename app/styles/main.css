@@ -177,3 +177,11 @@ body {
     box-shadow:  0px 3px 7px rgba(50, 180, 165, 0.75);
   }
 }
+
+div#userstat {
+  margin-top: 1em;
+}
+
+div#selectOptionsRow {
+  margin-top: 1em;
+}

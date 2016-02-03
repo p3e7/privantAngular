@@ -1,0 +1,58 @@
+<h1>Statistiken</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Nutzerstatistiken</h3>
+  </div>
+  <div class="panel-body">
+    <div ng-controller="UserStatCtrl">
+      <!-- Number of online user -->
+      <div class="row" id="userstat">
+        <div class="col-lg-4">
+          <h4>Momentan online: {{online}}</h4>
+        </div>
+        <div class="col-lg-1">
+          <button type="button" class="btn btn-default" ng-click="updateOnline">
+            <span class="glyphicon glyphicon-refresh"></span>
+          </button>
+        </div>
+      </div>
+      <!-- Select options -->
+      <div class="row" id="selectOptionsRow">
+        <label for="selectOptions">Anzahl der Monate in der Statistik:</label>
+        <select id="selectOptions" ng-model="monthSelected" ng-change="updateStatistics()">
+          <option value="4">Vier Monate</option>
+          <option value="5">Fünf Monate</option>
+          <option value="6">Sechs Monate</option>
+          <option value="7">Sieben Monate</option>
+          <option value="8">Acht Monate</option>
+          <option value="9">Neun Monate</option>
+          <option value="10">Zehn Monate</option>
+          <option value="11">Elf Monate</option>
+          <option value="12">Zwölf Monate</option>
+        </select>
+      </div>
+      <!-- Google charts -->
+      <div class="row" >
+        <div class="col-lg-12">
+          <div google-chart chart="chartObject" style="height: 350px; width: 100%;"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Eventstatistiken</h3>
+  </div>
+  <div class="panel-body">
+    Panel content
+  </div>
+</div>
+
+
+
+
+

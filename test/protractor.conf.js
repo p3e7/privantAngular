@@ -2,7 +2,7 @@
  * Created by Hon on 04.01.2016.
  */
 exports.config = {
-    //seleniumAddress: 'http://localhost:4444/wd/hub',
+    seleniumAddress: 'http://localhost:4444/wd/hub',
     framework: 'jasmine',
     specs: ['e2e/**/*.js'],
     baseUrl: 'http://localhost:4444',

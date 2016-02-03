@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'googlechart'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -59,6 +60,9 @@ angular
         templateUrl: 'views/contact.html',
         controller: 'ContactCtrl',
         controllerAs: 'contact'
+      })
+      .when('/statistics', {
+        templateUrl: 'views/statistics.html'
       })
       .otherwise({
         redirectTo: '/'
