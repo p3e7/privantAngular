@@ -2,11 +2,15 @@
 	"host": "localhost",
     "port": "3000",
 	"redirects":[{
-		"path": "/xx",
-		"redirect": "/animals"
+		"path": "/animals",
+		"method": "get"
 	},
     {
-		"path": "/xy",
-		"redirect": "/animal"
-	}]
+		"path": "/animal/:id",
+		"method": "get"
+	},
+    {
+        "path": "/animal",
+        "method": "post"
+    }]
 }]

@@ -1,5 +1,5 @@
 var app = require('express')();
-var http = require('http');
+var request = require('request');
 
 // providing the mappings
 var mappings = [];
@@ -8,13 +8,26 @@ mappings = mappings.concat(require('./jessi.json'));
 mappings = mappings.concat(require('./pete.json'));
 mappings = mappings.concat(require('./sascha.json'));
 
-console.log(mappings);
-
 // offers the function for registering a route and redirecting it to the provided server
-var appMethod = function(host, port, path, redirect){
-    app.get(path, function(req, res){
-        console.log("[INFO] Redirecting from %s to %s",path ,"http://"+host+":"+port+""+redirect);
-        res.redirect("http://"+host+":"+port+""+redirect);
+var appMethod = function(host, port, path, method){
+    app.all(path, function(req, res){
+        console.log("[INFO] API request on %s:%s%s send to %s:%s%s", server.address().address, server.address().port, req.originalUrl, host, port, req.originalUrl);
+        var r = null;        
+        
+        if(host.indexOf("http://") <= -1 && host.indexOf("https://") <= -1){
+            host = "http://"+host;
+        }
+        
+        var url = host+":"+port+req.originalUrl;
+        
+        if(method.toUpperCase() === "POST" || method.toUpperCase() == "PUT"){
+            r = request.post({uri: url, json: req.body});
+        } 
+        else {
+            r = request(url);
+        }
+        
+        req.pipe(r).pipe(res);
     });
 }
 
@@ -24,7 +37,9 @@ var storedFunction = [];
 // registers a route for each request
 for(var i = 0; i < mappings.length; i++){
 	for(var j = 0; j < mappings[i].redirects.length; j++){
-        storedFunction.push(appMethod(mappings[i].host, mappings[i].port, mappings[i].redirects[j].path, mappings[i].redirects[j].redirect));
+        var method = mappings[i].redirects[j].method === undefined?"GET":mappings[i].redirects[j].method;
+        storedFunction.push(appMethod(mappings[i].host, mappings[i].port, mappings[i].redirects[j].path, method));
+        console.log("[INIT] Created route to %s %s:%s%s ", method.toUpperCase(),mappings[i].host, mappings[i].port, mappings[i].redirects[j].path);
 	}
 }
 
@@ -38,16 +53,3 @@ var server = app.listen(9000, function () {
 
     console.log('[INFO] listening at http://%s:%s', host, port);
 });
-
-
-// MAYBE TO HANDLE REQUESTs
-var httpReq = function(host, path, port, resFunc){
-	http.get({"host": host, "path": path, "port": port}, function(res){
-		var body = [];
-		res.on('data', function(chunk) {
-			body.push(chunk);
-		}).on('end', function(){
-			resFunc(Buffer.concat(body));	
-		});
-	});
-};
