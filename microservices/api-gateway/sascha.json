@@ -1,16 +1,8 @@
 [{
 	"host": "localhost",
-    "port": "3000",
+    "port": "9004",
 	"redirects":[{
-		"path": "/animals",
+		"path": "/recommendations",
 		"method": "get"
-	},
-    {
-		"path": "/animal/:id",
-		"method": "get"
-	},
-    {
-        "path": "/animal",
-        "method": "post"
-    }]
+	}]
 }]

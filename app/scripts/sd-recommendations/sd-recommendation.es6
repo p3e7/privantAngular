@@ -88,55 +88,13 @@ class RecommendationDirectiveController {
 
 var sdr = angular.module('privantAngularApp');
 
-sdr.factory('recommendationsFty', function(){
+sdr.factory('recommendationsFty', function($http){
     var factory = {};
     
-    // later the api call will happen here and load the data from an expressjs server
-    factory.data = [{
-              "rank" : "2",
-              "event" : {
-                  "id": "1",
-                  "title": "Street Art 8 Dortmund",
-                  "description" : "Ein Festival für Künstler, Genießer und ausgefallene Straßenkunst im urbanen Raum",
-                  "city":"Dortmund",
-                  "date":"12.12.2015",
-                  "createdBy": "Sascha",
-                  "private" : false,
-                  "createdAt" : "2015-08-01",
-                  "maxUser": 6,
-                  tags: ["art", "street", "kunst"]
-              }
-            },
-            {
-              "rank" : "2",
-              "event" : {
-                  "id": "1",
-                  "title": "Street Art 8 Bochum",
-                  "description" : "Ein Festival für Künstler, Genießer und ausgefallene Straßenkunst im innerstädischen Raum",
-                  "city":"Bochum",
-                  "date":"12.11.2015",
-                  "createdBy": "Sascha",
-                  "private" : false,
-                  "createdAt" : "2015-08-01",
-                  "maxUser": 6,
-                  tags: ["art", "street", "kunst"]
-              }
-            },
-            {
-              "rank" : "2",
-              "event" : {
-                  "id": "1",
-                  "title": "Street Art 8 Essen",
-                  "description" : "Ein Festival für Künstler, Genießer und ausgefallene Straßenkunst im Treiben der Stadt",
-                  "city":"Essen",
-                  "date":"05.12.2015",
-                  "createdBy": "Sascha",
-                  "private" : false,
-                  "createdAt" : "2015-08-01",
-                  "maxUser": 6,
-                  tags: ["art", "street", "kunst"]
-              }
-            }];
+    factory.getData = function(func){
+        $http.get('http://localhost:10000/recommendations').
+        success(func);
+    };
     
     factory.search = [];
     
@@ -144,7 +102,9 @@ sdr.factory('recommendationsFty', function(){
 });
 
 sdr.controller('recommendationsCtrl', function($scope, recommendationsFty) {
-    $scope.data = recommendationsFty.data;
+    recommendationsFty.getData(function(data){
+        $scope.data = data;
+    });
 });
 
 sdr.directive('sdRecommendations', function(recommendationsFty) {

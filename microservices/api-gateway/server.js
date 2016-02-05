@@ -27,6 +27,9 @@ var appMethod = function(host, port, path, method){
             r = request(url);
         }
         
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
+        res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
         req.pipe(r).pipe(res);
     });
 }
@@ -47,7 +50,7 @@ for(var i = 0; i < mappings.length; i++){
 // arrays mergen
 
 // starts the server
-var server = app.listen(9000, function () {
+var server = app.listen(10000, function () {
     var host = server.address().address;
     var port = server.address().port;
 
