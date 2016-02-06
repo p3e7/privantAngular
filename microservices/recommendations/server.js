@@ -1,51 +1,19 @@
 var express = require('express');
+var reqfy = require("requestify");
 var app = express();
 
 
 app.get('/recommendations', function (req, res) {
-  res.send([{
-        "rank": "2",
-        "event": {
-            "id": "1",
-            "title": "Street Art 8 Dortmund",
-            "description": "Ein Festival für Künstler, Genießer und ausgefallene Straßenkunst im urbanen Raum",
-            "city": "Dortmund",
-            "date": "12.12.2015",
-            "createdBy": "Sascha",
-            "private": false,
-            "createdAt": "2015-08-01",
-            "maxUser": "6",
-            tags: ["art", "street", "kunst"]
+    // by now only a list of the events
+    var oRes = res;
+    request("http://localhost:9020/events", (sres) => {
+        var events = sres.getBody();
+        var recoms = [];
+        for(var i = 0; i < events.length; i++){
+            recoms.push(mapEvent2Recom(events[i]));
         }
-    }, {
-        "rank": "2",
-        "event": {
-            "id": "1",
-            "title": "Street Art 8 Bochum",
-            "description": "Ein Festival für Künstler, Genießer und ausgefallene Straßenkunst im innerstädischen Raum",
-            "city": "Bochum",
-            "date": "12.11.2015",
-            "createdBy": "Sascha",
-            "private": false,
-            "createdAt": "2015-08-01",
-            "maxUser": "6",
-            tags: ["art", "street", "kunst"]
-        }
-    }, {
-        "rank": "2",
-        "event": {
-            "id": "1",
-            "title": "Street Art 8 Essen",
-            "description": "Ein Festival für Künstler, Genießer und ausgefallene Straßenkunst im Treiben der Stadt",
-            "city": "Essen",
-            "date": "05.12.2015",
-            "createdBy": "Sascha",
-            "private": false,
-            "createdAt": "2015-08-01",
-            "maxUser": "6",
-            tags: ["art", "street", "kunst"]
-        }
-    }]);
+        oRes.send(recoms);
+    });
 });
 
 // start server
@@ -55,3 +23,24 @@ var server = app.listen(9004, function () {
 
     console.log('[INFO] listening at http://%s:%s', host, port);
 });
+
+var request = function(url, callback){
+    reqfy.get(url).then(callback);
+}
+
+var mapEvent2Recom = function(inevent){
+    return {
+        rank : "5",
+        event : {
+            id: inevent.id,
+            title : inevent.name,
+            description : inevent.description,
+            city : inevent.location,
+            date : inevent.date,
+            createdBy : "",
+            private : inevent.private,
+            tags : [inevent.category],
+            maxUser : inevent.limit
+        }
+    };
+}
