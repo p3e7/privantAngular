@@ -46,13 +46,22 @@
     "karma-safari-launcher": "^0.1.1",
     "karma-spec-reporter": "0.0.23",
     "load-grunt-tasks": "^3.4.0",
-    "ng-html2js": "^2.0.0",
     "phantomjs": "^1.9.19",
-    "protractor": "^3.0.0",
     "requirejs": "^2.1.22",
+    "karma-cli": "^0.1.2",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.3",
+    "karma-safari-launcher": "^0.1.1",
+    "phantomjs": "^1.9.19",
+    "ng-html2js": "^2.0.0",
+    "protractor": "^3.0.0",
     "time-grunt": "^1.0.0"
   },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "redis": "^2.4.2"
   }
 }

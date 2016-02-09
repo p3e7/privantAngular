@@ -29,7 +29,10 @@ angular.module('privantAngularApp')
         id: id + 1,
         name: event.name,
         description: event.description,
-        picture: "http://placehold.it/120x120/007700/ffffff",
+        descriptionLong: event.descriptionLong,
+        date:event.date,
+        location:event.location,
+        picture: "http://placehold.it/200x200/239788/ffffff",
       });
 
       $location.path("/events");
