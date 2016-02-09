@@ -8,6 +8,20 @@ mappings = mappings.concat(require('./jessi.json'));
 mappings = mappings.concat(require('./pete.json'));
 mappings = mappings.concat(require('./sascha.json'));
 
+app.use(function(req,res,next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With, Token");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+    
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.send(200);
+    }
+    else {
+      next();
+    }
+});
+
 // offers the function for registering a route and redirecting it to the provided server
 var appMethod = function(host, port, path, method){
     app.all(path, function(req, res){
@@ -27,9 +41,6 @@ var appMethod = function(host, port, path, method){
             r = request(url);
         }
         
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
-        res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
         req.pipe(r).pipe(res);
     });
 }

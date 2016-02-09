@@ -106,15 +106,25 @@ sdr.factory('recommendationsFty', function ($http) {
         $http.get('http://localhost:10000/recommendations').success(func);
     };
 
+    factory.fakeLogin = function () {
+        if ($http.defaults.headers.common["token"] === undefined) {
+            $http.post('http://localhost:9020/login', { name: "user2", pw: "1234" }).success(function (res) {
+                console.log(res);
+                $http.defaults.headers.common["token"] = res;
+            });
+        }
+    };
+
     factory.search = [];
 
     return factory;
 });
 
 sdr.controller('recommendationsCtrl', function ($scope, recommendationsFty) {
+    recommendationsFty.fakeLogin();
+
     recommendationsFty.getData(function (data) {
         $scope.data = data;
-        console.log(data);
     });
 });
 

@@ -1,9 +1,12 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var reqfy = require("requestify");
 var app = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.get('/recommendations', function (req, res) {
+app.get('/events', function (req, res) {
     // by now only a list of the events
     var oRes = res;
     request("http://localhost:9020/events", (sres) => {
@@ -15,6 +18,35 @@ app.get('/recommendations', function (req, res) {
         oRes.send(recoms);
     });
 });
+
+app.get('/recommendations', function (req, res) {
+    // by now only a list of the events
+    var oRes = res;
+    var token = req.headers.token;
+    console.log("[INFO] TOKEN : "+token);
+    request("http://localhost:9020/user/"+token+"/authenticated", (sres) => {
+        console.log(sres);
+        var user = sres.getBody();
+        if(user === ""){
+            console.log("[INFO] NOT AUTHENTICATED");
+            oRes.sendStatus(401);
+        }
+        else {
+            console.log("[INFO] AUTHENTICATED");
+            
+            request("http://localhost:9020/events", (evtres) => {
+                var events = evtres.getBody();
+                var recoms = [];
+                for(var i = 0; i < events.length; i++){
+                    recoms.push(mapEvent2Recom(events[i]));
+                }
+                oRes.send(recoms); // TODO build recommendatino tree
+            });
+        }
+    });
+    
+});
+
 
 // start server
 var server = app.listen(9004, function () {
@@ -43,4 +75,24 @@ var mapEvent2Recom = function(inevent){
             maxUser : inevent.limit
         }
     };
+}
+
+var recommendEvents = function(){
+}
+
+// returns all events a given user (uid) ist subscribed to
+var usersEvents = function(uid, events){
+    return events.find((el, i, ar) => {
+        var ret = el.subscriber.find((el2, i2, ar2) => {
+            if(el2 === uid){
+                return true;
+            }
+            return false;
+        });
+        
+        if(ret !== undefined){
+            return true;
+        }
+        return false;
+    });
 }
