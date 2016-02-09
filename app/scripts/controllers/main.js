@@ -8,10 +8,15 @@
  * Controller of the privantAngularApp
  */
 angular.module('privantAngularApp')
-  .controller('MainCtrl', function () {
+  .controller('MainCtrl',['$scope', '$location', function ($scope, $location) {
+
+    $scope.isActive = function (viewLocation) {
+      return viewLocation === $location.path();
+    };
+
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-  });
+  }]);

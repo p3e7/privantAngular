@@ -1,22 +1,39 @@
+<h1>Event anlegen</h1>
 <div class="row">
 
   <div class="col-md-10 col-md-offset-1 semiTransparentBg topSpaceOutside">
-    <div class="col-md-4">
+    <div class="col-md-11">
 
       <!-- Das Formular mit den einzlnen Eingabefeldern -->
       <form name="addEvent" role="form" ng-submit="save(event)">
         <div class="form-group">
-          <label for="productTitle">Name</label>
-          <input type="text" class="form-control" id="productTitle" required
+          <label for="eventName">Name</label>
+          <input type="text" class="form-control" id="eventName" required
                  placeholder="Wie heißt dein Event?" ng-model="event.name"/>
         </div>
 
-        <!-- Die Beschreibung -->
         <div class="form-group">
-          <label for="productDescription">Beschreibung</label>
-                  <textarea type="text" class="form-control" id="productDescription" required
-                            placeholder="Beschreibe dein Event!" rows="4" ng-model="event.description"
-                            name="user_eingabe" cols="50" rows="10"></textarea>
+          <label for="eventDescription">Beschreibung</label>
+                  <textarea type="text" class="form-control" id="eventDescription" required
+                            placeholder="Beschreibe dein Event!"  ng-model="event.description"
+                            rows="3" cols="50" ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="eventDescriptionLong">Beschreibung</label>
+                  <textarea type="text" class="form-control" id="eventDescriptionLong"
+                            placeholder="Beschreibe dein Event! - Ausführlich (optional)"  ng-model="event.descriptionLong"
+                            rows="7" cols="170" ></textarea>
+        </div>
+
+        <div class="form-group">
+        <label for="eventDate">Datum & Uhrzeit &nbsp;</label><input id="eventDate" type="datetime-local" ng-model="event.date" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="eventLocation">Ort</label>
+          <input type="text" class="form-control" id="eventLocation" required
+                 placeholder="Wie findet dein Event statt?" ng-model="event.location"/>
         </div>
 
 

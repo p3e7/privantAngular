@@ -1,0 +1,21 @@
+<div class="row col-xs-offset-0">
+  <h1>{{pAEvent.name}}</h1>
+
+  <article class="col-xs-11 img-rounded semiTransparentBg topSpaceOutside minHeightCategories hoverAnimation"
+           style="margin: 5px; padding-top: 7px;  box-shadow: 3px 3px 15px #c1c5c6;">
+
+    <p>{{pAEvent.descriptionLong}}</p>
+    <img class="img-rounded" src="{{pAEvent.picture}}">
+
+    <!--EEE Wochentag; '' benutzen um Strings in den Filter zu setzen -->
+    <p><br />Wann: {{pAEvent.date | date:"EEE - dd.MM.yy 'um' HH:mm"}}</p>
+    <p>Wo: {{pAEvent.location}}</p>
+
+    <div guests></div>
+
+    <p style="text-align: right"><a class="btn btn-default" href="/#/events" role="button">zurück</a></p>
+
+
+
+  </article>
+</div>
