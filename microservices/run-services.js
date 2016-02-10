@@ -1,10 +1,19 @@
-var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
 
-child = exec('node /auth/server.js',
-  function (error, stdout, stderr) {
-    console.log('stdout: ' + stdout);
-    console.log('stderr: ' + stderr);
-    if (error !== null) {
-      console.log('exec error: ' + error);
-    }
+var auth = spawn('node /auth/server.js');
+var mock = spawn('node /mock/server.js');
+
+
+auth.stdout.on('data', function (data) {
+  console.log('stdout: ' + data);
 });
+
+auth.stderr.on('data', function (data) {
+  console.log('stderr: ' + data);
+});
+
+auth.on('exit', function (code) {
+  console.log('child process exited with code ' + code);
+});
+
+

@@ -11,7 +11,7 @@ angular.module('privantAngularApp')
   .controller('MainCtrl',['$scope', '$location', '$http', function ($scope, $location, $http) {
     
     // delivers a token
-    var fakeLogin = function(){
+    this.fakeLogin = function(){
         if($http.defaults.headers.common["token"] === undefined){
             $http.post('http://localhost:10000/user/login', {name : "user2", pw : "1234"}).success(function(res){
                 console.log(res);
@@ -20,7 +20,7 @@ angular.module('privantAngularApp')
         }
     }
     
-    fakeLogin();
+    this.fakeLogin();
       
       
     $scope.isActive = function (viewLocation) {

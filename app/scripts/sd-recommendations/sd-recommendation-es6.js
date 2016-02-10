@@ -155,45 +155,47 @@ sdr.directive('sdRecommendations', function (recommendationsFty) {
 
 sdr.filter('filterRecommendations', function (recommendationsFty) {
     return function (input) {
-        var filtered = [];
+        if (input !== undefined) {
+            var filtered = [];
 
-        for (var i = 0; i < input.length; i++) {
-            var added = false;
-            for (var k = 0; k < recommendationsFty.search.length && !added; k++) {
-                // filters tags
-                for (var j = 0; j < input[i].event.tags.length && !added; j++) {
-                    if (input[i].event.tags[j] === recommendationsFty.search[k]) {
+            for (var i = 0; i < input.length; i++) {
+                var added = false;
+                for (var k = 0; k < recommendationsFty.search.length && !added; k++) {
+                    // filters tags
+                    for (var j = 0; j < input[i].event.tags.length && !added; j++) {
+                        if (input[i].event.tags[j] === recommendationsFty.search[k]) {
+                            filtered.push(input[i]);
+                            added = true;
+                        }
+                    }
+
+                    if (input[i].event.date === recommendationsFty.search[k] && !added) {
+                        filtered.push(input[i]);
+                        added = true;
+                    }
+
+                    if (input[i].event.description.contains(recommendationsFty.search[k]) && !added) {
+                        filtered.push(input[i]);
+                        added = true;
+                    }
+
+                    if (input[i].event.city === recommendationsFty.search[k] && !added) {
+                        filtered.push(input[i]);
+                        added = true;
+                    }
+
+                    if (input[i].event.title.contains(recommendationsFty.search[k]) && !added) {
                         filtered.push(input[i]);
                         added = true;
                     }
                 }
-
-                if (input[i].event.date === recommendationsFty.search[k] && !added) {
-                    filtered.push(input[i]);
-                    added = true;
-                }
-
-                if (input[i].event.description.contains(recommendationsFty.search[k]) && !added) {
-                    filtered.push(input[i]);
-                    added = true;
-                }
-
-                if (input[i].event.city === recommendationsFty.search[k] && !added) {
-                    filtered.push(input[i]);
-                    added = true;
-                }
-
-                if (input[i].event.title.contains(recommendationsFty.search[k]) && !added) {
-                    filtered.push(input[i]);
-                    added = true;
-                }
             }
-        }
 
-        if (recommendationsFty.search.length === 0) {
-            return input;
-        } else {
-            return filtered;
+            if (recommendationsFty.search.length === 0) {
+                return input;
+            } else {
+                return filtered;
+            }
         }
     };
 });
