@@ -5,4 +5,16 @@
 		"path": "/recommendations",
 		"method": "get"
 	}]
+},
+{
+    "host": "localhost",
+    "port": "9022",
+    "redirects":[{
+        "path": "/user/login",
+        "method":"post"
+    },
+    {
+        "path": "/user/:token/authenticated",
+        "method": "get"
+    }]
 }]

@@ -7,32 +7,6 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(function(req,res,next){
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
-    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
-    
-    // intercept OPTIONS method
-    if ('OPTIONS' == req.method) {
-      res.send(200);
-    }
-    else {
-      next();
-    }
-});
-
-app.get('/events', function(req, res){
-    runDBOperation(findDocuments, function(data){
-        res.send(data[0].event);
-    }, { collection: "event" });
-});
-
-app.get('/users', function(req, res){
-    runDBOperation(findDocuments, function(data){
-        res.send(data[0].user);
-    }, {collection: "user"});
-});
-
 app.get('/user/:token/authenticated', function(req, res){
     var token = req.params.token;
     console.log('auth started for token:' + req.params.token);
@@ -55,7 +29,7 @@ app.get('/user/:token/authenticated', function(req, res){
 // perUserToken
 var userTokens = [];
 
-app.post('/login', function(req, res){
+app.post('/user/login', function(req, res){
     var name = req.body.name || "";
     var pw = req.body.pw || "";
     runDBOperation(findDocuments, function(data){
@@ -94,7 +68,7 @@ app.post('/login', function(req, res){
     }, {collection : "user"});
 });
 
-var server = app.listen(9020, function () {
+var server = app.listen(9022, function () {
     var host = server.address().address;
     var port = server.address().port;
 
