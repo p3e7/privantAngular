@@ -1,5 +1,16 @@
-[{
-	"host": "localhost",
-	"port": "9003",
-	"redirects":[]
-}]
+[
+  {
+    "host": "localhost",
+    "port": "9003",
+    "redirects": [
+      {
+        "path": "/statistics",
+        "method": "get"
+      },
+      {
+        "path": "/statistics",
+        "method": "put"
+      }
+    ]
+  }
+]

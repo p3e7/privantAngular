@@ -1,1 +1,0 @@
-{"version":3,"sources":["calcVisitors.es6"],"names":[],"mappings":";;;;;QAAgB,aAAa,GAAb,aAAa;AAAtB,SAAS,aAAa,CAAE,KAAK,EAAE,MAAM,EAAE;AAC5C,SAAO,KAAK,GAAC,MAAM,CAAC;CACrB","file":"calcVisitors-es6.js","sourcesContent":["export function calcFreeSlots (space, guests) {\n  return space-guests;\n}\n"]}

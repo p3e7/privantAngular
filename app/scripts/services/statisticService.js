@@ -9,6 +9,7 @@ angular.module('privantAngularApp')
   //User statistics service
   .factory('UserStat', function ($http) {
 
+
     return {
 
       //Get the number of online users
@@ -17,7 +18,7 @@ angular.module('privantAngularApp')
         var users = [];
 
         //Get mocked data from json file
-        var onlineusers = $http.get('mocked_data/users.json').then(function (usersResponse) {
+        return $http.get('mocked_data/users.json').then(function (usersResponse) {
           users = usersResponse.data;
 
           var number = 0;
@@ -32,73 +33,65 @@ angular.module('privantAngularApp')
           return number;
         });
 
-        return onlineusers;
       },
 
-      //Get the number of registered users of the last 4 months
+      //Get the number of registered users
       getRegisteredUsers: function(monthYearArray) {
 
         var monthYear = monthYearArray;
-        var users = [];
+        var statistics = [];
 
-        //Get mocked data from json file
-        var registeredUsers = $http.get('mocked_data/users.json').then(function (usersResponse) {
-          users = usersResponse.data;
+        //Get data from db
+        return $http.get('http://localhost:10000/statistics').then(function (statisticData) {
+
+          statistics = statisticData.data;
 
           var regUsers = [];
 
           //Iterate through months to get the number of registered users
           for(var i = 0; i < monthYear.length; i++){
 
-            var number = 0;
+            var number = null;
 
-            //Iterate through users and increase number of registered users if registered match the specified month
-            for(var j = 0; j < users.length; j++) {
-              var user = users[j];
-              var regDate = user.registrierungsdatum;
-              if (regDate.indexOf(monthYear[i]) > -1) {
-                number++;
-              }
+            //Iterate through statistics and set number of registered users if month matches
+            for(var k = 0; k < statistics.length; k++) {
+              if(monthYear[i] === statistics[k].monthyear) {
+                number = statistics[k].regUsers;
+                regUsers.push(number);
+               }
             }
-            //Insert number of registered users in array
-            regUsers.push(number);
           }
           return regUsers;
         });
-        return registeredUsers;
       },
 
-      //Get the number of active users of the last 4 months
+      //Get the number of active users
       getActiveUsers: function(monthYearArray) {
 
         var monthYear = monthYearArray;
-        var users = [];
+        var statistics = [];
 
-        //Get mocked data from json file
-        var actUsers = $http.get('mocked_data/users.json').then(function (usersResponse) {
-          users = usersResponse.data;
+        //Get data from db
+        return $http.get('http://localhost:10000/statistics').then(function (statisticData) {
+          statistics = statisticData.data;
 
           var activeUsers = [];
 
           //Iterate through months to get the number of active users
           for(var i = 0; i < monthYear.length; i++){
 
-            var number = 0;
+            var number = null;
 
             //Iterate through users and increase number of active users if active match the specified month
-            for(var j = 0; j < users.length; j++) {
-              var user = users[j];
-              var lastActive = user.zuletzt_online;
-              if (lastActive.indexOf(monthYear[i]) > -1) {
-                number++;
+            for(var j = 0; j < statistics.length; j++) {
+              if(monthYear[i] === statistics[j].monthyear) {
+                number = statistics[j].activeUsers;
+                activeUsers.push(number);
               }
             }
-            //Insert number of registered users in array
-            activeUsers.push(number);
           }
           return activeUsers;
         });
-        return actUsers;
       }
     }
   });
