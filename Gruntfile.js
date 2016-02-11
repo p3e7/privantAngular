@@ -26,7 +26,7 @@ module.exports = function (grunt) {
     app: require('./bower.json').appPath || 'app',
     dist: 'dist'
   };
-  //grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-protractor-runner');
     
   // Define the configuration for all the tasks
   grunt.initConfig({

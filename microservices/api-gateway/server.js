@@ -1,5 +1,6 @@
 var app = require('express')();
 var request = require('request');
+const domain = require('domain');
 
 // providing the mappings
 var mappings = [];
@@ -25,6 +26,8 @@ app.use(function(req,res,next){
 // offers the function for registering a route and redirecting it to the provided server
 var appMethod = function(host, port, path, method){
     app.all(path, function(req, res){
+        
+        var d = domain.create();
         console.log("[INFO] API request on %s:%s%s send to %s:%s%s", server.address().address, server.address().port, req.originalUrl, host, port, req.originalUrl);
         var r = null;        
         
@@ -34,14 +37,21 @@ var appMethod = function(host, port, path, method){
         
         var url = host+":"+port+req.originalUrl;
         
-        if(method.toUpperCase() === "POST" || method.toUpperCase() == "PUT"){
-            r = request.post({uri: url, json: req.body});
-        } 
-        else {
-            r = request(url);
-        }
+        d.on('error', function(err){
+            console.log('[ERROR] On ' + url + ': ' + err);
+            res.send();
+        });
         
-        req.pipe(r).pipe(res);
+        d.run(function(){
+            if(method.toUpperCase() === "POST" || method.toUpperCase() == "PUT"){
+                r = request.post({uri: url, json: req.body});
+            } 
+            else {
+                r = request(url);
+            }
+
+            req.pipe(r).pipe(res);
+        });
     });
 }
 
